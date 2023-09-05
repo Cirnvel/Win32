@@ -28,5 +28,8 @@
     <ClInclude Include="Base\Wnd.h">
       <Filter>头文件\Base</Filter>
     </ClInclude>
+    <ClInclude Include="Base\D2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
