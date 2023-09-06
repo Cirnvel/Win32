@@ -1,8 +1,10 @@
 #include "..\Base\Wnd.h"
 
-HINSTANCE win::Wnd::hInstance{ nullptr };
-HWND win::Wnd::this_window{ nullptr };
-LRESULT win::Wnd::WndFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+using namespace win;
+
+HINSTANCE Wnd::hInstance{ nullptr };
+HWND Wnd::this_window{ nullptr };
+LRESULT Wnd::WndFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
@@ -21,7 +23,7 @@ LRESULT win::Wnd::WndFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-win::Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, BOOL IsExW) :
+Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndCassName, BOOL IsExW) :
 	msg(), wndclassW(), wndclassExW()
 {
 	std::locale::global(std::locale("zh_cn"));
@@ -37,7 +39,7 @@ win::Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, BOOL IsExW) :
 		wndclassW.hbrBackground = nullptr;
 		wndclassW.lpszMenuName = nullptr;
 		wndclassW.hCursor = LoadCursor(nullptr, IDC_ARROW);
-		wndclassW.lpszClassName = _wndclassName;
+		wndclassW.lpszClassName = _wndCassName;
 	}
 
 	else
@@ -51,10 +53,10 @@ win::Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, BOOL IsExW) :
 		wndclassExW.hbrBackground = nullptr;
 		wndclassExW.lpszMenuName = nullptr;
 		wndclassExW.hCursor = LoadCursor(nullptr, IDC_ARROW);
-		wndclassExW.lpszClassName = _wndclassName;
+		wndclassExW.lpszClassName = _wndCassName;
 	}
 }
-win::Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, CONST WndClassStyle& style, BOOL IsExW) :
+Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndCassName, CONST WndClassStyle& style, BOOL IsExW) :
 	msg(), wndclassW(), wndclassExW()
 {
 	std::locale::global(std::locale("zh_cn"));
@@ -70,7 +72,7 @@ win::Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, CONST WndClassStyle& 
 		wndclassW.hbrBackground = nullptr;
 		wndclassW.lpszMenuName = nullptr;
 		wndclassW.hCursor = LoadCursor(nullptr, IDC_ARROW);
-		wndclassW.lpszClassName = _wndclassName;
+		wndclassW.lpszClassName = _wndCassName;
 	}
 
 	else
@@ -84,10 +86,10 @@ win::Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, CONST WndClassStyle& 
 		wndclassExW.hbrBackground = nullptr;
 		wndclassExW.lpszMenuName = nullptr;
 		wndclassExW.hCursor = LoadCursor(nullptr, IDC_ARROW);
-		wndclassExW.lpszClassName = _wndclassName;
+		wndclassExW.lpszClassName = _wndCassName;
 	}
 }
-win::Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, CONST CursorStyle& Cursor, BOOL IsExW) :
+Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndCassName, CONST CursorStyle& Cursor, BOOL IsExW) :
 	msg(), wndclassW(), wndclassExW()
 {
 	std::locale::global(std::locale("zh_cn"));
@@ -103,7 +105,7 @@ win::Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, CONST CursorStyle& Cu
 		wndclassW.hbrBackground = nullptr;
 		wndclassW.lpszMenuName = nullptr;
 		wndclassW.hCursor = LoadCursor(nullptr, MAKEINTRESOURCEW(Cursor));
-		wndclassW.lpszClassName = _wndclassName;
+		wndclassW.lpszClassName = _wndCassName;
 	}
 
 	else
@@ -117,10 +119,10 @@ win::Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, CONST CursorStyle& Cu
 		wndclassExW.hbrBackground = nullptr;
 		wndclassExW.lpszMenuName = nullptr;
 		wndclassExW.hCursor = LoadCursor(nullptr, MAKEINTRESOURCEW(Cursor));
-		wndclassExW.lpszClassName = _wndclassName;
+		wndclassExW.lpszClassName = _wndCassName;
 	}
 }
-win::Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, CONST WndClassStyle& style, CONST WndStyle& Cursor, BOOL IsExW) :
+Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndCassName, CONST WndClassStyle& style, CONST WndStyle& Cursor, BOOL IsExW) :
 	msg(), wndclassW(), wndclassExW()
 {
 	std::locale::global(std::locale("zh_cn"));
@@ -136,7 +138,7 @@ win::Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, CONST WndClassStyle& 
 		wndclassW.hbrBackground = nullptr;
 		wndclassW.lpszMenuName = nullptr;
 		wndclassW.hCursor = LoadCursor(nullptr, MAKEINTRESOURCEW(Cursor));
-		wndclassW.lpszClassName = _wndclassName;
+		wndclassW.lpszClassName = _wndCassName;
 	}
 
 	else
@@ -150,36 +152,41 @@ win::Wnd::Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, CONST WndClassStyle& 
 		wndclassExW.hbrBackground = nullptr;
 		wndclassExW.lpszMenuName = nullptr;
 		wndclassExW.hCursor = LoadCursor(nullptr, MAKEINTRESOURCEW(Cursor));
-		wndclassExW.lpszClassName = _wndclassName;
+		wndclassExW.lpszClassName = _wndCassName;
 	}
 }
-win::Wnd::Wnd(CONST Wnd& _Wnd) :
+Wnd::Wnd(CONST Wnd& _Wnd) :
 	msg(),
 	wndclassW(_Wnd.wndclassW),
 	wndclassExW(_Wnd.wndclassExW) {}
-win::Wnd& win::Wnd::operator=(CONST Wnd& _wnd)
+Wnd& win::Wnd::operator=(CONST Wnd& _wnd)
 {
 	wndclassW = _wnd.wndclassW;
 	wndclassExW = _wnd.wndclassExW;
 
 	return *this;
 }
+Wnd::~Wnd()
+{
+	CloseHandle(Wnd::this_window);
+	Wnd::this_window = nullptr;
+}
 
-win::Wnd::Wnd(CONST WNDCLASSW& _wndclassW) : msg(), wndclassW(_wndclassW), wndclassExW()
+Wnd::Wnd(CONST WNDCLASSW& _wndclassW) : msg(), wndclassW(_wndclassW), wndclassExW()
 {
 	Wnd::hInstance = _wndclassW.hInstance;
 }
-win::Wnd::Wnd(CONST WNDCLASSEXW& _wndclassExW) : msg(), wndclassW(), wndclassExW(_wndclassExW)
+Wnd::Wnd(CONST WNDCLASSEXW& _wndclassExW) : msg(), wndclassW(), wndclassExW(_wndclassExW)
 {
 	Wnd::hInstance = _wndclassExW.hInstance;
 }
 
-BOOL win::Wnd::InitiallizeWindowW(LPCWSTR title_name)
+BOOL Wnd::InitiallizeWindowW(LPCWSTR title_name)
 {
 
 	if (!RegisterClassW(&wndclassW))
 	{
-		MessageBoxW(nullptr, TEXT("该窗口程序注册失败 ！"), TEXT("Error"), MB_ICONERROR);
+		MessageBoxW(nullptr, L"该窗口程序注册失败 ！", L"Error", MB_ICONERROR | MB_OK);
 
 		return FALSE;
 	}
@@ -197,17 +204,25 @@ BOOL win::Wnd::InitiallizeWindowW(LPCWSTR title_name)
 			nullptr,
 			nullptr,
 			Wnd::hInstance,
-			nullptr
+			this
 		);
 
-		return TRUE;
+		if(!Wnd::this_window)
+		{
+			MessageBoxW(nullptr, L"该窗口程序创建失败 ！", L"Error", MB_ICONERROR | MB_OK);
+
+			return FALSE;
+		}
+
+		else
+			return TRUE;
 	}
 }
-BOOL win::Wnd::InitiallizeWindowW(LPCWSTR title_name, CONST WndStyle& style)
+BOOL Wnd::InitiallizeWindowW(LPCWSTR title_name, CONST WndStyle& style)
 {
 	if (!RegisterClassW(&wndclassW))
 	{
-		MessageBoxW(nullptr, TEXT("该窗口程序注册失败 ！"), TEXT("Error"), MB_ICONERROR);
+		MessageBoxW(nullptr, L"该窗口程序注册失败 ！", L"Error", MB_ICONERROR | MB_OK);
 
 		return FALSE;
 	}
@@ -228,14 +243,22 @@ BOOL win::Wnd::InitiallizeWindowW(LPCWSTR title_name, CONST WndStyle& style)
 			this
 		);
 
-		return TRUE;
+		if (!Wnd::this_window)
+		{
+			MessageBoxW(nullptr, L"该窗口程序创建失败 ！", L"Error", MB_ICONERROR | MB_OK);
+
+			return FALSE;
+		}
+
+		else
+			return TRUE;
 	}
 }
-BOOL win::Wnd::InitiallizeWindowExW(LPCWSTR title_name)
+BOOL Wnd::InitiallizeWindowExW(LPCWSTR title_name)
 {
 	if (!RegisterClassExW(&wndclassExW))
 	{
-		MessageBoxW(nullptr, TEXT("该窗口程序注册失败 ！"), TEXT("Error"), MB_ICONERROR);
+		MessageBoxW(nullptr, L"该窗口程序注册失败 ！", L"Error", MB_ICONERROR | MB_OK);
 
 		return FALSE;
 	}
@@ -257,15 +280,23 @@ BOOL win::Wnd::InitiallizeWindowExW(LPCWSTR title_name)
 			this
 		);
 
-		return TRUE;
+		if (!Wnd::this_window)
+		{
+			MessageBoxW(nullptr, L"该窗口程序创建失败 ！", L"Error", MB_ICONERROR | MB_OK);
+
+			return FALSE;
+		}
+
+		else
+			return TRUE;
 	}
 
 }
-BOOL win::Wnd::InitiallizeWindowExW(LPCWSTR title_name, CONST WndStyle& style)
+BOOL Wnd::InitiallizeWindowExW(LPCWSTR title_name, CONST WndStyle& style)
 {
 	if (!RegisterClassExW(&wndclassExW))
 	{
-		MessageBoxW(nullptr, TEXT("该窗口程序注册失败 ！"), TEXT("Error"), MB_ICONERROR);
+		MessageBoxW(nullptr, L"该窗口程序注册失败 ！", L"Error", MB_ICONERROR | MB_OK);
 
 		return FALSE;
 	}
@@ -287,34 +318,51 @@ BOOL win::Wnd::InitiallizeWindowExW(LPCWSTR title_name, CONST WndStyle& style)
 			this
 		);
 
-		return TRUE;
+		if (!Wnd::this_window)
+		{
+			MessageBoxW(nullptr, L"该窗口程序创建失败 ！", L"Error", MB_ICONERROR | MB_OK);
+
+			return FALSE;
+		}
+
+		else
+			return TRUE;
 	}
 
 }
 
-WPARAM win::Wnd::Show()
+WPARAM Wnd::Show()
 {
-	ShowWindow(this_window, static_cast<UINT>(ShowStyle::ShowNormal));
-	UpdateWindow(this_window);
+	ShowWindow(Wnd::this_window, static_cast<UINT>(ShowStyle::ShowNormal));
+	UpdateWindow(Wnd::this_window);
 
+	RunMessageLoop();
+
+	return msg.wParam;
+}
+WPARAM Wnd::Show(INT nCmdShow)
+{
+	ShowWindow(Wnd::this_window, static_cast<UINT>(ShowStyle::ShowNormal));
+	UpdateWindow(Wnd::this_window);
+
+	RunMessageLoop(nCmdShow);
+
+	return msg.wParam;
+}
+
+VOID Wnd::RunMessageLoop()
+{
 	while (GetMessageW(&msg, nullptr, 0, 0))
 	{
 		TranslateMessage(&msg);
 		DispatchMessageW(&msg);
 	}
-
-	return msg.wParam;
 }
-WPARAM win::Wnd::Show(INT nCmdShow)
+VOID Wnd::RunMessageLoop(INT nCmdShow)
 {
-	ShowWindow(this_window, nCmdShow);
-	UpdateWindow(this_window);
-
 	while (GetMessageW(&msg, nullptr, 0, 0))
 	{
 		TranslateMessage(&msg);
 		DispatchMessageW(&msg);
 	}
-
-	return msg.wParam;
 }

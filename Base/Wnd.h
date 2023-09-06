@@ -121,13 +121,13 @@ namespace win
 	{
 	public:
 
-		Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, BOOL IsExW = FALSE);
-		Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, CONST WndClassStyle& style, BOOL IsExW = FALSE);
-		Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, CONST CursorStyle& cursor, BOOL IsExW = FALSE);
-		Wnd(HINSTANCE _hInstance, LPCWSTR _wndclassName, CONST WndClassStyle& style, CONST WndStyle& Cursor, BOOL IsExW = FALSE);
+		Wnd(HINSTANCE _hInstance, LPCWSTR _wndClassName, BOOL IsExW = FALSE);
+		Wnd(HINSTANCE _hInstance, LPCWSTR _wndClassName, CONST WndClassStyle& style, BOOL IsExW = FALSE);
+		Wnd(HINSTANCE _hInstance, LPCWSTR _wndClassName, CONST CursorStyle& cursor, BOOL IsExW = FALSE);
+		Wnd(HINSTANCE _hInstance, LPCWSTR _wndClassName, CONST WndClassStyle& style, CONST WndStyle& Cursor, BOOL IsExW = FALSE);
 		explicit WINAPI Wnd(CONST Wnd& _Wnd);
 		Wnd& operator=(CONST Wnd& _wnd);
-		virtual ~Wnd() = default;
+		virtual ~Wnd();
 
 		Wnd(CONST WNDCLASSW& _wndclassW);
 		Wnd(CONST WNDCLASSEXW& _wndclassExW);
@@ -136,18 +136,25 @@ namespace win
 		virtual BOOL InitiallizeWindowW(LPCWSTR title_name, CONST WndStyle& style);
 		virtual BOOL InitiallizeWindowExW(LPCWSTR title_name);
 		virtual BOOL InitiallizeWindowExW(LPCWSTR title_name, CONST WndStyle& style);
-		virtual WPARAM Show();
-		virtual WPARAM Show(INT nCmdShow);
+		WPARAM Show();
+		WPARAM Show(INT nCmdShow);
 
-	private:
+	protected:
+
+		VOID RunMessageLoop();
+		VOID RunMessageLoop(INT nCmdShow);
+
+	protected:
 
 		MSG msg;
 		WNDCLASSW wndclassW;
 		WNDCLASSEXW wndclassExW;
 
 		static HINSTANCE hInstance;
-		static HWND this_window;
 
+	private:
+
+		static HWND this_window;
 		static LRESULT WINAPI WndFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 	};
 }

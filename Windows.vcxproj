@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Src\D2d.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="Src\Wnd.cpp" />
   </ItemGroup>
