@@ -41,23 +41,23 @@ namespace d2d
         virtual BOOL InitiallizeWindowW(LPCWSTR title_name, CONST WndStyle& style) override;
         virtual BOOL InitiallizeWindowExW(LPCWSTR title_name) override;
         virtual BOOL InitiallizeWindowExW(LPCWSTR title_name, CONST WndStyle& style) override;
-        VOID Show();
-        VOID Show(INT nCmdShow);
+        BOOL Show();
+        BOOL Show(INT nCmdShow);
 
     protected:
 
         virtual HRESULT CreateDeviceIndependentResources();
         virtual HRESULT CreateDeviceResources();
-        void DiscardDeviceResources();
+        VOID DiscardDeviceResources();
         HRESULT OnRender();
-        void OnResize(UINT width, UINT height);
+        VOID OnResize(UINT width, UINT height);
 
     private:
 
-        std::unique_ptr<ID2D1Factory*> m_pDirect2dFactory;
-        std::unique_ptr<ID2D1HwndRenderTarget*> m_pRenderTarget;
-        std::unique_ptr<ID2D1SolidColorBrush*> m_pLightSlateGrayBrush;
-        std::unique_ptr<ID2D1SolidColorBrush*> m_pCornflowerBlueBrush;
+        ID2D1Factory* m_pDirect2dFactory;
+        ID2D1HwndRenderTarget* m_pRenderTarget;
+        ID2D1SolidColorBrush* m_pLightSlateGrayBrush;
+        ID2D1SolidColorBrush* m_pCornflowerBlueBrush;
 
         static HWND this_window;
         static LRESULT WINAPI WndFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);

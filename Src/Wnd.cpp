@@ -342,23 +342,15 @@ WPARAM Wnd::Show()
 }
 WPARAM Wnd::Show(INT nCmdShow)
 {
-	ShowWindow(Wnd::this_window, static_cast<UINT>(ShowStyle::ShowNormal));
+	ShowWindow(Wnd::this_window, nCmdShow);
 	UpdateWindow(Wnd::this_window);
 
-	RunMessageLoop(nCmdShow);
+	RunMessageLoop();
 
 	return msg.wParam;
 }
 
 VOID Wnd::RunMessageLoop()
-{
-	while (GetMessageW(&msg, nullptr, 0, 0))
-	{
-		TranslateMessage(&msg);
-		DispatchMessageW(&msg);
-	}
-}
-VOID Wnd::RunMessageLoop(INT nCmdShow)
 {
 	while (GetMessageW(&msg, nullptr, 0, 0))
 	{

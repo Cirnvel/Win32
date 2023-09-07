@@ -142,7 +142,6 @@ namespace win
 	protected:
 
 		VOID RunMessageLoop();
-		VOID RunMessageLoop(INT nCmdShow);
 
 	protected:
 
